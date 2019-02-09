@@ -1,0 +1,3 @@
+rootProject.name = 'rn_charts_wrapper_impl'
+
+include ':app'
