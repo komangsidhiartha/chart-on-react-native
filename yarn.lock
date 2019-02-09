@@ -1950,7 +1950,7 @@ fbjs-scripts@^1.0.0:
     semver "^5.1.0"
     through2 "^2.0.0"
 
-fbjs@^0.8.9:
+fbjs@^0.8.16, fbjs@^0.8.9:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -4443,7 +4443,7 @@ prompts@^2.0.1:
     kleur "^3.0.2"
     sisteransi "^1.0.0"
 
-prop-types@^15.5.8, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
@@ -4531,6 +4531,14 @@ react-is@^16.6.3:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.1.tgz#a80141e246eb894824fb4f2901c0c50ef31d4cdb"
   integrity sha512-ioMCzVDWvCvKD8eeT+iukyWrBGrA3DiFYkXfBsVYIRdaREZuBjENG+KjrikavCLasozqRWTwFUagU/O4vPpRMA==
 
+react-native-charts-wrapper@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-charts-wrapper/-/react-native-charts-wrapper-0.5.0.tgz#bba324b83d090f34368ce46e629ec09304ec0524"
+  integrity sha512-5SX8k2+F2iT+sV5XzmZZLptG+9YhSG0+UvU5YpwZHty52WbPnYgmz33VuvTx5vVWdFsJ9NowmLGz169ILFGStQ==
+  dependencies:
+    prop-types "^15.5.10"
+    react "16.1.1"
+
 react-native@0.58.4:
   version "0.58.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.58.4.tgz#bb1392727712787ba84983104c4920c0f4082677"
@@ -4615,6 +4623,16 @@ react-transform-hmr@^1.0.4:
   dependencies:
     global "^4.3.0"
     react-proxy "^1.1.7"
+
+react@16.1.1:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.1.1.tgz#d5c4ef795507e3012282dd51261ff9c0e824fe1f"
+  integrity sha512-FQfiFfk2z2Fk87OngNJHT05KyC9DOVn8LPeB7ZX+9u5+yU1JK6o5ozRlU3PeOMr0IFkWNvgn9jU8/IhRxR1F0g==
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 react@16.6.3:
   version "16.6.3"
