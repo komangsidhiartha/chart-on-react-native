@@ -3,49 +3,91 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  Button,
-  View, processColor
+  View,
+  processColor
 } from 'react-native'
 import update from 'immutability-helper'
 
 import {LineChart} from 'react-native-charts-wrapper'
 
-class App extends React.Component {
+class TimeSeriesLineChartScreen extends React.Component {
 
   constructor() {
     super()
 
     this.state = {
       data: {},
-      chart1Zoom: {scaleX: 3, scaleY: 1, xValue: 50, yValue: 0},
-      chart2Zoom: {scaleX: 3, scaleY: 1, xValue: 50, yValue: 0}
+      legend: {
+        enabled: false
+      },
+      marker: {
+        enabled: true,
+        markerColor: processColor('#F0C0FF8C'),
+        textColor: processColor('white'),
+        markerFontSize: 14
+      },
+
+      selectedEntry: "",
+      yAxis: {left:{enabled: false}, right: {enabled: false}},
+      xAxis: {
+        axisLineWidth: 0,
+        drawLabels: false,
+        drawGridLines: false
+      }
     }
+
   }
 
   componentDidMount() {
+    const size = 80
+
     this.setState(
       update(this.state, {
         data: {
           $set: {
             dataSets: [{
-              values: Array.from(new Array(600), (val, index) => index),
-              label: 'Company X',
-            }, {
-              values: Array.from(new Array(600), (val, index) => index + 5),
-              label: 'Company Y',
+              values: [ 11000, 90, 130, 11000, 2000, 9000, 11000 ],
+
+              label: 'user',
+              config: {
+                lineWidth: 1,
+                drawValues: false,
+                circleRadius: 0,
+                highlightEnabled: true,
+                drawHighlightIndicators: false,
+                color: processColor('red'),
+                drawFilled: true,
+                valueTextSize:10,
+                fillColor: processColor('red'),
+                fillAlpha: 45,
+                valueFormatter: "$###.0",
+                circleColor: processColor('red')
+              }
             }]
           }
         }
       })
     )
   }
-  
+
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+
+    console.log(event.nativeEvent)
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
 
-        <View style={{height:40}}>
-          <Text>Drag or zoom first chart</Text>
+        <View style={{height:80, backgroundColor: '#F5FCFF'}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
         </View>
 
         <View style={styles.container}>
@@ -53,7 +95,9 @@ class App extends React.Component {
           <LineChart
             style={styles.chart}
             data={this.state.data}
-            xAxis={this.state.xAxis}
+            chartDescription={{text: ''}}
+            legend={this.state.legend}
+            marker={this.state.marker}
 
             touchEnabled
             dragEnabled={false}
@@ -61,11 +105,17 @@ class App extends React.Component {
             scaleXEnabled={false}
             scaleYEnabled={false}
             pinchZoom={false}
-            zoom={this.state.chart1Zoom}
+            drawGridBackground={false}
+            drawBorders={false}
 
-            ref="chart1"
+            yAxis={this.state.yAxis}
+            xAxis={this.state.xAxis}
 
-            onChange={(event) => this.syncToChart2(event.nativeEvent)}
+
+            onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
+
+            ref="chart"
           />
         </View>
       </View>
@@ -83,4 +133,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default App
+export default TimeSeriesLineChartScreen
